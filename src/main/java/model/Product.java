@@ -46,20 +46,4 @@ public class Product {
     public double getPrice() {
         return price;
     }
-
-    public JSONObject toJson(){
-        JSONObject object = new JSONObject();
-        try {
-            object.put("barcode", barcode);
-            object.put("name", name);
-            object.put("unit", unit);
-            object.put("category", category);
-            object.put("subCategory", subCategory);
-            object.put("price", price);
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return object;
-    }
 }
