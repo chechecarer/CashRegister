@@ -12,7 +12,7 @@ public class ReceiptPrinter {
         return "***<没钱赚商店>购物清单***\n";
     }
 
-    private String printEachProductStandard(Product product, int number) {
+    private String printEachProductWithOriginalPrice(Product product, int number) {
         return String.format("名称：%s，数量：%d%s，单价：%1.2f(元)，小计：%1.2f(元)\n",
                 product.getName(),
                 number,product.getUnit(),
@@ -41,13 +41,17 @@ public class ReceiptPrinter {
         return stringBuilder.toString();
     }
 
-    public String printProductPrice(HashMap<Product, Integer> originalPriceProductListWithNumber,
-                                    HashMap<Product, Integer> discountProductListWithNumber) {
+    public String printMultipleProductWithOriginalPrice(HashMap<Product, Integer> originalPriceProductListWithNumber) {
         StringBuilder stringBuilder = new StringBuilder();
         for(Product originalPriceProduct : originalPriceProductListWithNumber.keySet()) {
-            stringBuilder.append(printEachProductStandard(originalPriceProduct, originalPriceProductListWithNumber
+            stringBuilder.append(printEachProductWithOriginalPrice(originalPriceProduct, originalPriceProductListWithNumber
                     .get(originalPriceProduct)));
         }
+        return stringBuilder.toString();
+    }
+
+    public String printMultipleProductWithDiscount(HashMap<Product, Integer> discountProductListWithNumber) {
+        StringBuilder stringBuilder = new StringBuilder();
         for(Product discountProduct : discountProductListWithNumber.keySet()) {
             stringBuilder.append(printEachProductWithDiscount(discountProduct, discountProductListWithNumber
                     .get(discountProduct)));

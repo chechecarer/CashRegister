@@ -33,13 +33,13 @@ public class CashRegister {
         double total = 0.0;
 
         return total;
-    }
+}
 
     public String printReceipt() {
         StringBuilder receiptBuilder = new StringBuilder();
         receiptBuilder.append(receiptPrinter.printTitle());
-        receiptBuilder.append(receiptPrinter.printProductPrice(originalPriceProductListWithNumber,
-                discountProductListWithNumber));
+        receiptBuilder.append(receiptPrinter.printMultipleProductWithOriginalPrice(originalPriceProductListWithNumber));
+        receiptBuilder.append(receiptPrinter.printMultipleProductWithDiscount(discountProductListWithNumber));
         receiptBuilder.append(receiptPrinter.printBuyTwoGetOneProduct(buyTwoGetOneProductListWithNumber));
         receiptBuilder.append(receiptPrinter.printSumPrice(this.calculateTotalPrice()));
         receiptBuilder.append(receiptPrinter.printSavePrice(this.calculateTotalSavePrice()));
