@@ -3,15 +3,11 @@
  */
 public class CashRegisterDiscount {
 
-    public final static String PROJECTPATH = System.getProperty("user.dir");
+    public static final String PROJECTPATH = System.getProperty("user.dir");
 
     public static void main(String[] args) {
 
-//        Supermarket supermarket = Supermarket.getInstance();
-//
-//        CashRegister cashRegister = new CashRegister();
-//
-//        JSONObject shoppingCart = cashRegister.getShoppingCartGoods(PROJECTPATH + "\\data\\shoppingCart.txt");
+           CashRegister cashRegister = new CashRegister();
 //
 //        cashRegister.printReceipt(supermarket, shoppingCart);
     }

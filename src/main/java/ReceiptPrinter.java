@@ -1,7 +1,6 @@
 import model.Product;
 
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by anyang on 2016/7/18.
@@ -22,7 +21,7 @@ public class ReceiptPrinter {
 
     private String printEachProductWithDiscount(Product product, int number) {
         double originalPrice = product.getPrice() * number;
-        double discountedPrice = originalPrice * 0.95;
+        double discountedPrice = originalPrice * DefaultDiscount.DISCOUNT;
         return String.format("名称：%s，数量：%d%s，单价：%1.2f(元)，小计：%1.2f(元), 节省：%1.2f(元)\n",
                 product.getName(),
                 number,product.getUnit(),

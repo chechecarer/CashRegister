@@ -1,19 +1,21 @@
-import org.json.JSONObject;
+import model.Product;
 import utils.FileUtils;
+
+import java.util.HashMap;
 
 /**
  * Created by anyang on 2016/7/18.
  */
 public class Supermarket {
 
-    public JSONObject supermarketGoods;
+    public HashMap<String, Product> supermarketProducts;
     private volatile static Supermarket supermarketInstance = null;
 
     private Supermarket() {
-        supermarketGoods = initGoods();
+        supermarketProducts = getProducts();
     }
 
-    private JSONObject initGoods(){
+    private HashMap<String, Product> getProducts(){
         return FileUtils.fileParse(CashRegisterDiscount.PROJECTPATH + "\\data\\supermarket.txt", "supermarket");
     }
 

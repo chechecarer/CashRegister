@@ -12,7 +12,7 @@ public class Product {
     private String unit;
     private String category;
     private String subCategory;
-    private double price;
+    private double price = 0.0;
 
     public Product(String barcode, String name, String unit, String category, String subCategory, double price) {
         this.barcode = barcode;

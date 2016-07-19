@@ -1,18 +1,17 @@
 package utils;
 
 import model.Product;
-import org.json.JSONObject;
 
 import java.io.*;
+import java.util.HashMap;
 
 /**
  * Created by anyang on 2016/7/18.
  */
 public class FileUtils {
 
-    public static JSONObject fileParse(String filePath, String filetype) {
-
-        JSONObject jsonObject = null;
+    public static HashMap fileParse(String filePath, String filetype) {
+        HashMap hashMap = null;
         File file = new File(filePath);
         BufferedReader bufferedReader = null;
 
@@ -33,20 +32,20 @@ public class FileUtils {
                 CloseUtils.close(bufferedReader);
             }
         }
-        return jsonObject;
+        return hashMap;
     }
 
-    private static JSONObject shoppingCartFileParse(BufferedReader bufferedReader) throws IOException {
+    private static HashMap<String, Integer> shoppingCartFileParse(BufferedReader bufferedReader) throws IOException {
         String lineData = "";
-        JSONObject shoppingCartProducts = new JSONObject();
+        HashMap<String, Integer> shoppingCartProducts = new HashMap<String, Integer>();
 
         while((lineData = bufferedReader.readLine()) != null) {
             if(lineData.contains("-")) {
                 String[] dataArray = lineData.split("-");
                 shoppingCartProducts.put(dataArray[0], Integer.parseInt(dataArray[1]));
             }else {
-                if(shoppingCartProducts.has(lineData)) {
-                    int number = shoppingCartProducts.getInt(lineData) + 1;
+                if(shoppingCartProducts.containsKey(lineData)) {
+                    int number = shoppingCartProducts.get(lineData) + 1;
                     shoppingCartProducts.put(lineData, number);
                 }else {
                     shoppingCartProducts.put(lineData, 1);
@@ -56,9 +55,9 @@ public class FileUtils {
         return shoppingCartProducts;
     }
 
-    private static JSONObject discountFileParse(BufferedReader bufferedReader) throws IOException {
+    private static HashMap<String, String> discountFileParse(BufferedReader bufferedReader) throws IOException {
         String lineData = "";
-        JSONObject discountInfo = new JSONObject();
+        HashMap<String, String> discountInfo = new HashMap<String, String>();
 
         while((lineData = bufferedReader.readLine()) != null) {
             String[] dataArray = lineData.split(",");
@@ -71,9 +70,9 @@ public class FileUtils {
         return discountInfo;
     }
 
-    private static JSONObject supermarketFileParse(BufferedReader bufferedReader) throws IOException {
+    private static HashMap<String, Product> supermarketFileParse(BufferedReader bufferedReader) throws IOException {
         String lineData = "";
-        JSONObject supermarketProducts = new JSONObject();
+        HashMap<String, Product> supermarketProducts = new HashMap<String, Product>();
 
         while((lineData = bufferedReader.readLine()) != null) {
             String[] dataArray = lineData.split(",");
