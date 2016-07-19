@@ -11,7 +11,11 @@ public class CalculatorWithBuyTwoGetOneProduct implements CalculatorStrategy{
     public double calculate(HashMap<Product, Integer> buyTwoGetOneProductListWithNumber) {
         double price = 0.0;
         for (Product buyTwoGetOneProductItem : buyTwoGetOneProductListWithNumber.keySet()) {
-            price += buyTwoGetOneProductItem.getPrice() * buyTwoGetOneProductListWithNumber.get(buyTwoGetOneProductItem);
+            // price += buyTwoGetOneProductItem.getPrice() * buyTwoGetOneProductListWithNumber.get(buyTwoGetOneProductItem);
+            int productTotalNumber = buyTwoGetOneProductListWithNumber.get(buyTwoGetOneProductItem);
+            int product3GroupNumber = productNumber / 3;
+            int productOtherNumber = productNumber % 3;
+            price += buyTwoGetOneProductItem.getPrice() *(2 * (product3Number) + productOtherNumber) ;
         }
         return price;
     }
