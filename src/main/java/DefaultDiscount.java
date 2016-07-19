@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * Created by anyang on 2016/7/18.
  */
-public class DefaultDiscount implements IDiscount {
+public class DefaultDiscount implements DiscountStrategy {
 
     public static final double DISCOUNT = 0.95;
 

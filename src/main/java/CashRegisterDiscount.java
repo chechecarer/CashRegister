@@ -7,9 +7,9 @@ public class CashRegisterDiscount {
 
     public static void main(String[] args) {
 
-           CashRegister cashRegister = new CashRegister();
-//
-//        cashRegister.printReceipt(supermarket, shoppingCart);
+        CashRegister cashRegister = new CashRegister();
+
+        cashRegister.printReceipt();
     }
 
 }

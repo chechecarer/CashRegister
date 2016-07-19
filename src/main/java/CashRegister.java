@@ -8,32 +8,26 @@ import java.util.HashMap;
  */
 public class CashRegister {
 
-    private IDiscount discount;
-    private ReceiptPrinter receiptPrinter;
+    private DiscountStrategy discount = new DefaultDiscount();
+    private ReceiptPrinter receiptPrinter = new ReceiptPrinter();
 
     private HashMap<String, Integer> shoppingCartProductListWithNumber;
     private HashMap<String, Product> supermarketProductList;
     private HashMap<String, String> discountProductListWithDiscount;
 
-    private HashMap<Product, Integer> buyTwoGetOneProductListWithNumber;
-    private HashMap<Product, Integer> originalPriceProductListWithNumber;
-    private HashMap<Product, Integer> discountProductListWithNumber;
+    private HashMap<Product, Integer> buyTwoGetOneProductListWithNumber = new HashMap<Product, Integer>();
+    private HashMap<Product, Integer> originalPriceProductListWithNumber = new HashMap<Product, Integer>();
+    private HashMap<Product, Integer> discountProductListWithNumber = new HashMap<Product, Integer>();
 
     public CashRegister() {
-        discount = new DefaultDiscount();
-        receiptPrinter = new ReceiptPrinter();
-
         shoppingCartProductListWithNumber = this.getShoppingCartProduct(CashRegisterDiscount.PROJECTPATH
                 + "\\data\\shoppingCart.txt");
         supermarketProductList = Supermarket.getInstance().supermarketProducts;
         discountProductListWithDiscount = discount.getDiscount();
-
-        buyTwoGetOneProductListWithNumber = new HashMap<Product, Integer>();
-        originalPriceProductListWithNumber = new HashMap<Product, Integer>();
-        discountProductListWithNumber = new HashMap<Product, Integer>();
+        isDiscountProduct();
     }
 
-    public void setDiscount(IDiscount discount) {
+    public void setDiscount(DiscountStrategy discount) {
         this.discount = discount;
     }
 
@@ -69,35 +63,10 @@ public class CashRegister {
 
     private double calculateTotalPrice() {
         double totalPrice = 0.0;
-        totalPrice = calculatePriceWithOriginalPriceProducts() + calculatePriceWithDiscountProducts()
-                + calculatePriceWithBuyTwoGetOneProducts();
+        totalPrice = new CalculatorWithOriginalPriceProduct().calculate(originalPriceProductListWithNumber)
+                + new CalculatorWithDiscountProduct().calculate(discountProductListWithNumber)
+                + new CalculatorWithBuyTwoGetOneProduct().calculate(buyTwoGetOneProductListWithNumber);
         return totalPrice;
-    }
-
-    private double calculatePriceWithOriginalPriceProducts() {
-        double price = 0.0;
-        for (Product originalPriceProductItem : originalPriceProductListWithNumber.keySet()) {
-            price += originalPriceProductItem.getPrice() * originalPriceProductListWithNumber.get(originalPriceProductItem);
-        }
-        return price;
-    }
-
-    private double calculatePriceWithDiscountProducts() {
-        double price = 0.0;
-        for (Product discountProductItem : discountProductListWithNumber.keySet()) {
-            price += discountProductItem.getPrice() * discountProductListWithNumber.get(discountProductItem)
-                    * DefaultDiscount.DISCOUNT;
-        }
-        return price;
-    }
-
-    // 待实现
-    private double calculatePriceWithBuyTwoGetOneProducts() {
-        double price = 0.0;
-        for (Product buyTwoGetOneProductItem : buyTwoGetOneProductListWithNumber.keySet()) {
-            price += buyTwoGetOneProductItem.getPrice() * buyTwoGetOneProductListWithNumber.get(buyTwoGetOneProductItem);
-        }
-        return price;
     }
 
     private double calculateTotalSavePrice() {
@@ -108,23 +77,19 @@ public class CashRegister {
 
     private double calculateSavePriceWithDiscountProducts() {
         double price = 0.0;
-        for (Product discountProductItem : discountProductListWithNumber.keySet()) {
-            price += discountProductItem.getPrice() * discountProductListWithNumber.get(discountProductItem)
-                    * (1 - DefaultDiscount.DISCOUNT);
-        }
+        price = new CalculatorWithOriginalPriceProduct().calculate(discountProductListWithNumber)
+                - new CalculatorWithDiscountProduct().calculate(discountProductListWithNumber);
         return price;
     }
 
-    // 待实现
     private double calculateSavePriceWithBuyTwoGetOneProducts() {
         double price = 0.0;
-        for (Product buyTwoGetOneProductItem : buyTwoGetOneProductListWithNumber.keySet()) {
-            price += buyTwoGetOneProductItem.getPrice() * buyTwoGetOneProductListWithNumber.get(buyTwoGetOneProductItem);
-        }
+        price = new CalculatorWithOriginalPriceProduct().calculate(buyTwoGetOneProductListWithNumber)
+                - new CalculatorWithBuyTwoGetOneProduct().calculate(buyTwoGetOneProductListWithNumber);
         return price;
     }
 
-    public String printReceipt() {
+    public void printReceipt() {
         StringBuilder receiptBuilder = new StringBuilder();
         receiptBuilder.append(receiptPrinter.printTitle());
         receiptBuilder.append(receiptPrinter.printMultipleProductWithOriginalPrice(originalPriceProductListWithNumber));
@@ -132,7 +97,7 @@ public class CashRegister {
         receiptBuilder.append(receiptPrinter.printBuyTwoGetOneProduct(buyTwoGetOneProductListWithNumber));
         receiptBuilder.append(receiptPrinter.printSumPrice(this.calculateTotalPrice()));
         receiptBuilder.append(receiptPrinter.printSavePrice(this.calculateTotalSavePrice()));
-        return receiptBuilder.toString();
+        System.out.println(receiptBuilder.toString());
     }
 
 }
