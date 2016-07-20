@@ -1,9 +1,12 @@
+package cashregister;
+
 import calculator.CalculatorWithBuyTwoGetOneProduct;
 import calculator.CalculatorWithDiscountProduct;
 import calculator.CalculatorWithOriginalPriceProduct;
 import discount.DefaultDiscount;
 import discount.DiscountStrategy;
 import model.Product;
+import printer.ReceiptPrinter;
 import utils.FileUtils;
 
 import java.util.HashMap;

@@ -1,4 +1,5 @@
-import cashregister.CashRegisterMain;
+package cashregister;
+
 import model.Product;
 import utils.FileUtils;
 
