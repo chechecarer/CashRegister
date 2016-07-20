@@ -1,4 +1,4 @@
-package cashregister;
+import cashregister.CashRegister;
 
 /**
  * Created by anyang on 2016/7/18.
