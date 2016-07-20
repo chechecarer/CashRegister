@@ -7,7 +7,6 @@ import java.util.HashMap;
  */
 public class CalculatorWithOriginalPriceProduct implements CalculatorStrategy {
 
-    @Override
     public double calculate(HashMap<Product, Integer> originalPriceProductListWithNumber) {
         double price = 0.0;
         for (Product originalPriceProductItem : originalPriceProductListWithNumber.keySet()) {
