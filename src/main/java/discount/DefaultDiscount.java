@@ -10,6 +10,6 @@ public class DefaultDiscount implements DiscountStrategy {
     public static final double DISCOUNT = 0.95;
 
     public HashMap<String, String> getDiscount() {
-        return FileUtils.fileParse(CashRegisterDiscount.PROJECTPATH + "\\data\\discount.txt", "discount");
+        return FileUtils.fileParse(CashRegisterMain.PROJECTPATH + "\\data\\discount.txt", "discount");
     }
 }

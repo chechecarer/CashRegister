@@ -1,3 +1,8 @@
+import calculator.CalculatorWithBuyTwoGetOneProduct;
+import calculator.CalculatorWithDiscountProduct;
+import calculator.CalculatorWithOriginalPriceProduct;
+import discount.DefaultDiscount;
+import discount.DiscountStrategy;
 import model.Product;
 import utils.FileUtils;
 
@@ -20,7 +25,7 @@ public class CashRegister {
     private HashMap<Product, Integer> discountProductListWithNumber = new HashMap<Product, Integer>();
 
     public CashRegister() {
-        shoppingCartProductListWithNumber = this.getShoppingCartProduct(CashRegisterDiscount.PROJECTPATH
+        shoppingCartProductListWithNumber = this.getShoppingCartProduct(CashRegisterMain.PROJECTPATH
                 + "\\data\\shoppingCart.txt");
         supermarketProductList = Supermarket.getInstance().supermarketProducts;
         discountProductListWithDiscount = discount.getDiscount();

@@ -1,3 +1,4 @@
+import discount.DefaultDiscount;
 import model.Product;
 
 import java.util.HashMap;

@@ -1,3 +1,4 @@
+import cashregister.CashRegisterMain;
 import model.Product;
 import utils.FileUtils;
 
@@ -16,7 +17,7 @@ public class Supermarket {
     }
 
     private HashMap<String, Product> getProducts(){
-        return FileUtils.fileParse(CashRegisterDiscount.PROJECTPATH + "\\data\\supermarket.txt", "supermarket");
+        return FileUtils.fileParse(CashRegisterMain.PROJECTPATH + "\\data\\supermarket.txt", "supermarket");
     }
 
     public static Supermarket getInstance(){
