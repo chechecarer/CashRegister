@@ -17,7 +17,7 @@ public class FileUtils {
 
         if(file.exists() && file.isFile()) {
             try {
-                bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"GBK"));
+                bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
                 if(filetype.equals("shoppingCart")) {
                     return shoppingCartFileParse(bufferedReader);
                 }else if(filetype.equals("discount")) {
