@@ -18,7 +18,7 @@ public class Supermarket {
     }
 
     private HashMap<String, Product> getProducts(){
-        return FileUtils.fileParse(CashRegisterMain.PROJECTPATH + "\\data\\supermarket.txt", "supermarket");
+        return FileUtils.fileParse(CashRegister.PROJECTPATH + "\\data\\supermarket.txt", "supermarket");
     }
 
     public static Supermarket getInstance(){

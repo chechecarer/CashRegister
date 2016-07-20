@@ -16,6 +16,8 @@ import java.util.HashMap;
  */
 public class CashRegister {
 
+    public static final String PROJECTPATH = System.getProperty("user.dir");
+
     private DiscountStrategy discount = new DefaultDiscount();
     private ReceiptPrinter receiptPrinter = new ReceiptPrinter();
 
@@ -28,7 +30,7 @@ public class CashRegister {
     private HashMap<Product, Integer> discountProductListWithNumber = new HashMap<Product, Integer>();
 
     public CashRegister() {
-        shoppingCartProductListWithNumber = this.getShoppingCartProduct(CashRegisterMain.PROJECTPATH
+        shoppingCartProductListWithNumber = this.getShoppingCartProduct(PROJECTPATH
                 + "\\data\\shoppingCart.txt");
         supermarketProductList = Supermarket.getInstance().supermarketProducts;
         discountProductListWithDiscount = discount.getDiscount();
