@@ -1,3 +1,5 @@
+package calculator;
+
 import model.Product;
 
 import java.util.HashMap;
