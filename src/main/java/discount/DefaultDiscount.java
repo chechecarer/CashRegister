@@ -1,3 +1,6 @@
+package discount;
+
+import CashRegisterMain;
 import utils.FileUtils;
 
 import java.util.HashMap;

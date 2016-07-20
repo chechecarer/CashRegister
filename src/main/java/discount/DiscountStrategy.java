@@ -1,3 +1,5 @@
+package discount;
+
 import java.util.HashMap;
 
 /**
