@@ -1,3 +1,5 @@
+package printer;
+
 import discount.DefaultDiscount;
 import model.Product;
 
