@@ -7,11 +7,13 @@ import java.util.HashMap;
  */
 public class CalculatorWithBuyTwoGetOneProduct implements CalculatorStrategy{
 
-    @Override
     public double calculate(HashMap<Product, Integer> buyTwoGetOneProductListWithNumber) {
         double price = 0.0;
         for (Product buyTwoGetOneProductItem : buyTwoGetOneProductListWithNumber.keySet()) {
-            price += buyTwoGetOneProductItem.getPrice() * buyTwoGetOneProductListWithNumber.get(buyTwoGetOneProductItem);
+            int productNumber = buyTwoGetOneProductListWithNumber.get(buyTwoGetOneProductItem);
+            int productGroupNumberWithThreeItems = productNumber / 3 ;
+            int productOtherNumber = productNumber % 3;
+            price += buyTwoGetOneProductItem.getPrice() * (2 * productGroupNumberWithThreeItems + productOtherNumber);
         }
         return price;
     }
